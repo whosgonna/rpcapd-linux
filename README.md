@@ -5,6 +5,25 @@ This is a fork of rpcapd modified to compile and work in Linux.
 
 It is still quite messy and may not compile or work.
 
+## Notes On This Fork:
+This for (whosgonna) aims to add systemd files for Debian to run rpcapd as a
+daemon.
+
+To do this, copy the compiled rpcap binary (see the *Building* section below) 
+to `/usr/local/sbin/rpcapd`, then do the following from the root directory of 
+this project:
+
+```
+chmod 755 /usr/local/sbin/rpcapd
+cp ./dist/etc/systemd/system/rpcapd.service /etc/systemd/system/rpcapd.service
+useradd -s /usr/sbin/nologin -r -M rpcapd
+systemctl daemon-reload
+systemctl enable rpcapd.service
+systemctl start rpcapd
+```
+
+
+
 ## Building
 This fork ships with a patched libpcap version found in WinPcap library.
 

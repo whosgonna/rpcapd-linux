@@ -1,0 +1,14 @@
+# Contents of /etc/systemd/system/myservice.service
+[Unit]
+Description=Remote Packet CAPture Daemon (rpcapd)
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/local/sbin/rpcapd -4 -n -p 5041
+User=rpcapd
+Group=rpcapd
+
+[Install]
+WantedBy=multi-user.target
